@@ -13,3 +13,7 @@ Terraform is an automation tool created by HashiCorp. It focuses on deploying cl
 
 For this lab we will see how to deploy a VMware vSphere virtual machine with Terraform, therefore we obviously need a working VMware vSphere environment (vCenter and ESXi). We will use a Linux client machine (Ubuntu 16.04), but the installation of Terraform on another platform should be straightforward.
 
+**Installation of terraform**
+
+1. 
+``sudo yum install wget unzip``
