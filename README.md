@@ -1,4 +1,4 @@
-# terraform-vmware
+# Stage1: Terraform-vmware
 Automatic Deploy Virtual Machines on VMware DataCenter using Terraform
 
 ***
