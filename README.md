@@ -15,5 +15,4 @@ For this lab we will see how to deploy a VMware vSphere virtual machine with Ter
 
 **Installation of terraform**
 
-1. 
 ``sudo yum install wget unzip``
