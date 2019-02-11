@@ -21,6 +21,9 @@ Download terraform package
 I will strongly suggest to always download and use latest package. Visit to terraform website to download terraform latest package.
 
 ``wget https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.11_linux_amd64.zip
+
 unzip terraform_0.11.8_linux_amd64.zip 
+
 sudo cp terraform /usr/bin
+
 sudo chmod +x /usr/bin/terraform``
