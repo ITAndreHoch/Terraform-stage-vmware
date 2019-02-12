@@ -58,6 +58,8 @@ The set of files used to describe infrastructure in Terraform is simply known as
 
 Configuration files should be JSON
 
+All configuration parameters are described on the page: https://www.terraform.io/docs/providers/vsphere/index.html
+
 The entire configuration is in two files:
 
 
