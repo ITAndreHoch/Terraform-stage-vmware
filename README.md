@@ -1,9 +1,13 @@
 # Stage1: Terraform-vmware
-Automatic Deploy Virtual Machines on VMware DataCenter using Terraform
+Automatic Deploy Virtual Machines on VMware DataCenter using Terraform.
+Infrastructure as Code
+Infrastructure is described using a high-level configuration syntax. This allows a blueprint of your datacenter to be versioned and treated as you would any other code. Additionally, infrastructure can be shared and re-used.
+
+»
 
 ***
 
-**This is an example of deploying one Centos7 virtual machine on existing VMware infrastructure.**
+**This is an example how to  deploy  Centos7 virtual machine on existing VMware infrastructure.**
 
 Terraform is an automation tool created by HashiCorp. It focuses on deploying cloud infrastructure in an automatic fashion. It supports a lot of cloud providers like AWS, DigitalOcean, Google Cloud Platform, OpenStack, VMware vSphere, and more. Terraform is developed in GoLang, which makes the installation really easy to perform, and allows for a lot of operating systems to be supported.
 
@@ -14,6 +18,8 @@ Terraform is an automation tool created by HashiCorp. It focuses on deploying cl
 For this lab we will see how to deploy a VMware vSphere virtual machine with Terraform, therefore we obviously need a working VMware vSphere environment (vCenter and ESXi). We will use a Linux client machine (Ubuntu 16.04), but the installation of Terraform on another platform should be straightforward.
 
 **Installation of terraform**
+
+To install Terraform, find the appropriate package for your system and download it. Terraform is packaged as a zip archive.
 
 ``sudo yum install wget unzip``
 
@@ -28,10 +34,40 @@ I will strongly suggest to always download and use latest package. Visit to terr
 
 ``sudo chmod +x /usr/bin/terraform``
 
-Creating terraform space for our vm: 
-Creating directory for terraform env and files - example
+**Creating terraform space for our vm:** 
+Creating directory for env and files:
 
 ```mkdir -p /terraform/custom-machine ; cd /terraform/custom-machine ```
+
+
+**Configuration**
+
+Configuration
+The set of files used to describe infrastructure in Terraform is simply known as a Terraform configuration. I'm going to write our first configuration now to launch a single WMware instance.
+
+Configuration files should be JSON
+
+The entire configuration is in two files:
+
+
+**varaibles.tf**
+```
+cat variables.tf 
+variable "vsphere_server" {
+  description = "VSphere Server for PROD/DEV environment - Company"
+  default = "vcenter01.doamin.pl"
+}
+
+variable "vsphere_user" {
+  description = "VSphere Server user for PROD/DEV environment - Company"
+  default = "username@doamin.pl"
+}
+
+variable "vsphere_password" {
+  description = "VSphere Server password for PROD/DEV environment - Company"
+  default = "Password"
+}
+```
 
 
 
