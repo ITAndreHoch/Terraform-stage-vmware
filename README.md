@@ -28,6 +28,16 @@ I will strongly suggest to always download and use latest package. Visit to terr
 
 ``sudo chmod +x /usr/bin/terraform``
 
+Creating terraform space for our vm: 
+Creating directory for terraform env and files - example
+
+```mkdir -p /terraform/custom-machine ; cd /terraform/custom-machine ```
+
+
+
+**terraform init**
+
+The terraform init command is used to initialize a working directory containing Terraform configuration files. This is the first command that should be run after writing a new Terraform configuration or cloning an existing one from version control. It is safe to run this command multiple times.
 
 ```[root@plwawprovision custom_machine]# terraform init
 
@@ -56,7 +66,9 @@ rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
 [root@plwawprovision custom_machine]# 
 ```
-Terraform plan
+**Terraform plan**
+
+The terraform plan command is used to create an execution plan. Terraform performs a refresh, unless explicitly disabled, and then determines what actions are necessary to achieve the desired state specified in the configuration files.
 ```
 [root@plwawprovision custom_machine]# terraform plan
 Refreshing Terraform state in-memory prior to plan...
@@ -66,7 +78,14 @@ persisted to local or remote state storage.
 data.vsphere_datacenter.dc: Refreshing state...
 data.vsphere_compute_cluster.cluster: Refreshing state...
 data.vsphere_datastore.datastore: Refreshing state...
+[..]
+
 ```
+**Terraform apply**
+
+By default, apply scans the current directory for the configuration and applies the changes appropriately.
+
+
 
 ```
 [root@plwawprovision custom_machine]# terraform apply
