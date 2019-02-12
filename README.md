@@ -17,6 +17,19 @@ Terraform is an automation tool created by HashiCorp. It focuses on deploying cl
 
 For this lab we will see how to deploy a VMware vSphere virtual machine with Terraform, therefore we obviously need a working VMware vSphere environment (vCenter and ESXi). We will use a Linux client machine (Ubuntu 16.04), but the installation of Terraform on another platform should be straightforward.
 
+**WMware Template preparation**
+
+Docs:
+
+https://docs.vmware.com/en/vRealize-Automation/7.3/com.vmware.vra.prepare.use.doc/GUID-4599FC83-F9C5-440B-BA5D-88C706934593.html
+
+Two things are important:
+
+![Alt](images/vm1.png)
+![Alt](images/vm2.png)
+
+
+
 **Installation of terraform**
 
 To install Terraform, find the appropriate package for your system and download it. Terraform is packaged as a zip archive.
@@ -69,6 +82,92 @@ variable "vsphere_password" {
 }
 ```
 
+**build.tf**
+
+```
+
+# cat build.tf 
+provider "vsphere" {
+  user           = "${var.vsphere_user}"
+  password       = "${var.vsphere_password}"
+  vsphere_server = "${var.vsphere_server}"
+
+  # If you have a self-signed cert
+  allow_unverified_ssl = true
+}
+
+data "vsphere_datacenter" dc {
+  name = "DataCenter1"
+}
+
+data "vsphere_compute_cluster" cluster {
+  name          = "01-Cluster"
+  datacenter_id = "${data.vsphere_datacenter.dc.id}"
+}
+
+data "vsphere_datastore" datastore {
+  name          = "DS_iscsi_ds01"
+  datacenter_id = "${data.vsphere_datacenter.dc.id}"
+}
+
+data "vsphere_network" network {
+  name          = "PROD-network"
+  datacenter_id = "${data.vsphere_datacenter.dc.id}"
+}
+
+data "vsphere_virtual_machine" "template" {
+    name = "centos_gold_image"
+    datacenter_id = "${data.vsphere_datacenter.dc.id}"
+}
+
+### Resources ###
+
+resource "vsphere_virtual_machine" "vm" {
+    name = "plwawterra_t"
+    datastore_id = "${data.vsphere_datastore.datastore.id}"
+    resource_pool_id = "${data.vsphere_compute_cluster.cluster.resource_pool_id}"
+    folder = "management"
+
+    num_cpus = "1"
+    memory = "1024"
+    guest_id = "${data.vsphere_virtual_machine.template.guest_id}"
+
+    network_interface {
+    network_id = "${data.vsphere_network.network.id}"
+    }
+
+    disk {
+      label = "disk0"
+      size  = 20
+      #thin_provisioned = "false"
+    }
+
+    clone {
+    template_uuid = "${data.vsphere_virtual_machine.template.id}"
+
+    customize {
+      linux_options {
+        host_name = "terraform-test"
+        domain    = "localhost"
+      }
+
+      network_interface {
+        ipv4_address = "10.0.2.44"
+        ipv4_netmask = 24
+      }
+      ipv4_gateway = "10.0.0.1"
+    }
+  }
+wait_for_guest_net_timeout = 0
+}
+
+```
+
+**Summary of configuration**
+VM name: plwawterra_t
+OS hostanme: terraform-test
+IP Address: 10.0.2.24
+Gateway: 10.0.2.1
 
 
 **terraform init**
