@@ -60,7 +60,7 @@ Configuration files should be JSON
 
 All configuration parameters are described on the page: https://www.terraform.io/docs/providers/vsphere/index.html
 
-The entire configuration is in two files:
+The entire configuration consist of two files:
 
 
 **varaibles.tf**
