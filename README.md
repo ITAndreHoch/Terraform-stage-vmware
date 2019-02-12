@@ -3,8 +3,6 @@ Automatic Deploy Virtual Machines on VMware DataCenter using Terraform.
 Infrastructure as Code
 Infrastructure is described using a high-level configuration syntax. This allows a blueprint of your datacenter to be versioned and treated as you would any other code. Additionally, infrastructure can be shared and re-used.
 
-»
-
 ***
 
 **This is an example how to  deploy  Centos7 virtual machine on existing VMware infrastructure.**
@@ -164,11 +162,12 @@ wait_for_guest_net_timeout = 0
 ```
 
 **Summary of configuration**
-VM name: plwawterra_t
-OS hostanme: terraform-test
-IP Address: 10.0.2.24
-Gateway: 10.0.2.1
+* VM name: plwawterra_t
+* OS hostanme: terraform-test
+* IP Address: 10.0.2.24
+* Gateway: 10.0.2.1
 
+*** 
 
 **terraform init**
 
