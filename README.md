@@ -24,7 +24,9 @@ https://docs.vmware.com/en/vRealize-Automation/7.3/com.vmware.vra.prepare.use.do
 Two things are important:
 
 ![Alt](images/vm1.png)
-![Alt](images/vm2.png)
+
+* Type of disk: thin provision
+* Enbale of vApp options to configure OVF
 
 
 
