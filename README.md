@@ -29,7 +29,7 @@ I will strongly suggest to always download and use latest package. Visit to terr
 ``sudo chmod +x /usr/bin/terraform``
 
 
-``[root@plwawprovision custom_machine]# terraform init
+```[root@plwawprovision custom_machine]# terraform init
 
 Initializing provider plugins...
 - Checking for available provider plugins on https://releases.hashicorp.com...
@@ -55,4 +55,4 @@ If you ever set or change modules or backend configuration for Terraform,
 rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
 [root@plwawprovision custom_machine]# 
-``
+```
